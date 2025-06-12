@@ -100,15 +100,5 @@ export default defineNuxtModule<ModuleOptions>({
       handler: resolver.resolve('./runtime/server/middleware/dashboard.global.ts'),
       // Pas de route = middleware global
     })
-
-    // Ajout du plugin : VeeValidate
-    addPlugin(
-      {
-        src: resolver.resolve('./runtime/plugins/VeeValidate'),
-      },
-      {
-        append: true,
-      },
-    )
   },
 })
