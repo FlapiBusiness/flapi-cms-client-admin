@@ -1,7 +1,7 @@
 /**
  * Utilisatin du script :
  * tsx scripts/generate-listeicons-metadata.ts
- * 
+ *
  * Output :
  */
 
@@ -18,9 +18,7 @@ type ComponentMeta = {
   category: string
 }
 
-const componentsDir = path.resolve(
-  'node_modules/@flapi/cms-designsystem/dist/runtime/components',
-)
+const componentsDir = path.resolve('node_modules/@flapi/cms-designsystem/dist/runtime/components')
 const iconsDir = path.join(componentsDir, 'icons')
 
 // 🎯 Chemins de sortie dans src/runtime/assets/
@@ -28,11 +26,7 @@ const outputDir = path.resolve('src/runtime/assets')
 const outputMetaFile = path.join(outputDir, 'components-meta.json')
 const outputIconsFile = path.join(outputDir, 'icons/liste.json')
 
-const getFilesRecursively = (
-  dir: string,
-  extension = '.vue',
-  fileList: string[] = [],
-): string[] => {
+const getFilesRecursively = (dir: string, extension = '.vue', fileList: string[] = []): string[] => {
   const files = fs.readdirSync(dir)
   for (const file of files) {
     const filePath = path.join(dir, file)

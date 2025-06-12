@@ -6,7 +6,7 @@ import type { FlapiEvent, FlapiSlot } from '#cmsadmin/core/types/FlapiCmsCompone
  * It includes properties such as name, description, props, category, slots, and events.
  * @property {string} name - The name of the component.
  * @property {string} description - A brief description of the component.
- * @property {FlapiProp[]} [props] - An optional array of properties (props) that the component accepts.
+ * @property {Record<string, any>} [props] - An optional array of properties (props) that the component accepts.
  * @property {string} category - The category to which the component belongs.
  * @property {FlapiSlot[]} [slots] - An optional array of slots that the component can use.
  * @property {FlapiEvent[]} [events] - An optional array of events that the component can emit.
