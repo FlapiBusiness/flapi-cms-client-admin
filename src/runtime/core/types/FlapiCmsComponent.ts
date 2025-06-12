@@ -1,4 +1,4 @@
-import type { CmsComponentSkeleton } from '#cmsadmin/components/type/CmsComponentSkeleton'
+import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
 
 /**
  * FlapiCmsComponent interface definition

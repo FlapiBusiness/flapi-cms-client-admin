@@ -59,7 +59,7 @@
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'
-import type { CmsComponentSkeleton } from '#cmsadmin/components/type/CmsComponentSkeleton'
+import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
 
 /**
  * This is the model value for the HeroSection component.

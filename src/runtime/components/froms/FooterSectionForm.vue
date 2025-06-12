@@ -65,7 +65,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, type ComputedRef } from 'vue'
-import type { CmsComponentSkeleton } from '#cmsadmin/components/type/CmsComponentSkeleton'
+import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
 import type { Ref } from 'vue'
 
 /**
