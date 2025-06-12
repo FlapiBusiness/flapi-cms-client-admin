@@ -23,7 +23,6 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup(_: ModuleOptions, nuxt: Nuxt): Promise<void> {
     const resolver: Resolver = createResolver(import.meta.url)
-    const runtimeDir = fileURLToPath(new URL('./runtime', import.meta.url))
 
     const tailwindCssPath: string = resolver.resolve('./runtime/assets/css/tailwind.css')
     const generatedCssPath: string = resolver.resolve('./runtime/assets/css/generated.css')
@@ -93,12 +92,6 @@ export default defineNuxtModule<ModuleOptions>({
         path: '/dashboard', // La route accessible
         file: resolver.resolve('./runtime/pages/dashboard/index.vue'), // Fichier Vue à charger
       })
-    })
-
-    // Ajout du middleware global pour le dashboard
-    addServerHandler({
-      handler: resolver.resolve('./runtime/server/middleware/dashboard.global.ts'),
-      // Pas de route = middleware global
     })
   },
 })

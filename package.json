@@ -64,6 +64,7 @@
     "create:component": "sh ./scripts/create-component.sh",
     "delete:component": "sh ./scripts/delete-component.sh",
     "components:build:css:prod": "npx tailwindcss -c tailwind.config.ts -i ./src/runtime/assets/css/tailwind.css -o ./src/runtime/assets/css/generated.css",
+    "generate:metadata": "tsx scripts/generate-listeicons-metadata.ts",
     "lint": "npm run lint:prettier && npm run lint:eslint && npm run lint:ts",
     "lint:prettier": "prettier --check .",
     "lint:eslint": "eslint .",

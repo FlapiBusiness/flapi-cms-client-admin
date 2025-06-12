@@ -87,7 +87,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import type { Ref } from 'vue'
 import type { FlapiProp, DefaultValue, FlapiCmsComponent } from '#cmsadmin/composables/type/FlapiCmsComponent'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'

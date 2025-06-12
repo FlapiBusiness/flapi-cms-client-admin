@@ -42,6 +42,7 @@ import type { ComputedRef } from 'vue'
 import type { FlapiComponentCardProps } from '#cmsadmin/components/card/ComponentCard.vue'
 import type { FlapiCmsComponentCardProps } from '../card/FlapiCmsComponentCard.vue'
 import type { FlapiCmsComponent } from '#cmsadmin/composables/type/FlapiCmsComponent'
+import { computed } from 'vue'
 
 /**
  * @description

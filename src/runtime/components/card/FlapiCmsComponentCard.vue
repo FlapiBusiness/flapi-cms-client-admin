@@ -50,6 +50,7 @@
 
 <script lang="ts" setup>
 import type { FlapiProp, FlapiSlot, FlapiEvent } from '#cmsadmin/composables/type/FlapiCmsComponent'
+import type { PropType } from 'vue'
 /**
  * @description
  * This is the model value for the Flapi CMS component card.

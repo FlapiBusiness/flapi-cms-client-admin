@@ -29,6 +29,7 @@ import type { Ref, ComputedRef } from 'vue'
 // Store
 import { useCmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
 import type { CmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
+import { computed } from 'vue'
 
 // Components
 import FlapiCmsSidebar from '#cmsadmin/components/siderbar/FlapiCmsSidebar.vue'

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
-import type { FlapiComponentCardProps } from '~/components/card/ComponentCard.vue'
-import type { FlapiCmsComponentCardProps } from '~/components/card/FlapiCmsComponentCard.vue'
-import type { CmsComponentSkeleton } from '~/components/type/CmsComponentSkeleton'
+import type { FlapiComponentCardProps } from '#cmsadmin/components/card/ComponentCard.vue'
+import type { FlapiCmsComponentCardProps } from '#cmsadmin/components/card/FlapiCmsComponentCard.vue'
+import type { CmsComponentSkeleton } from '#cmsadmin/components/type/CmsComponentSkeleton'
 
 /**
  * CmsComponentStore interface.
