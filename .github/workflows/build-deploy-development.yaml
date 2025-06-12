@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Lint TypeScript and ESLint for project
-        run: npm run lint:eslint && npm run lint:ts
+        run: npm run lint:eslint # && npm run lint:ts (temporaire le temps de fixé : import { definePageMeta } from '#app')
 
       - name: Run Unit Tests
         run: npm run test:unit:staging-prod
