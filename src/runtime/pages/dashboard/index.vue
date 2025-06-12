@@ -56,7 +56,8 @@ import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
 
 import type { Ref } from 'vue'
 import { ref, onMounted } from 'vue'
-import { definePageMeta } from '#imports'
+import { definePageMeta } from '.nuxt/imports'
+// import { definePageMeta } from ''
 
 definePageMeta({
   layout: 'cms',
