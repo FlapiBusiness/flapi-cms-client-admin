@@ -35,7 +35,7 @@
   ],
   "scripts": {
     "dev": "nuxt-module-build build --stub && nuxt-module-build prepare && nuxi prepare playground && nuxi dev playground",
-    "build:modulenuxt:prod": "npm run components:build:css:prod && tsx scripts/build-module.ts",
+    "build": "npm run components:build:css:prod && tsx scripts/build-module.ts",
     "web:build:static:develop": "nuxi generate --dotenv .env.development",
     "web:build:static:staging": "nuxi generate --dotenv .env.staging",
     "web:build:static:prod": "nuxi generate --dotenv .env.production",

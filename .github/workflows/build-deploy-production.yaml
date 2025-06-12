@@ -67,7 +67,7 @@ jobs:
         run: npm install
 
       - name: Build project for module nuxt to package npm
-        run: npm run module:build:prod
+        run: npm run build
 
       - name: Publish package to registry npm
         run: npm publish --access public

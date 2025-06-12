@@ -61,7 +61,7 @@ jobs:
             -f k8s/development/service.yaml
 
       - name: Build project for module nuxt to package npm
-        run: npm run build:modulenuxt:prod
+        run: npm run build
 
       - name: Update version in package.json with commit SHA
         run: |
