@@ -51,7 +51,7 @@
 <script lang="ts" setup>
 import { useCmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
 import type { CmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
-import { getComponentName } from '#cmsadmin/components/sections/componentDisplayMap'
+import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
 // import FlapiComponentRenderer from '~/components/display/FlapiComponentRenderer.vue'
 
 import type { Ref } from 'vue'

@@ -1,4 +1,4 @@
-import type { FlapiEvent, FlapiSlot } from '#cmsadmin/composables/type/FlapiCmsComponent'
+import type { FlapiEvent, FlapiSlot } from '#cmsadmin/core/types/FlapiCmsComponent'
 
 /**
  * FlapiCmsComponent interface definition

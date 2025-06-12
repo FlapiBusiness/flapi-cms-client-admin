@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import type { CmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
-import { getComponentName } from '#cmsadmin/components/sections/componentDisplayMap'
+import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
 import { onMounted, ref } from 'vue'
 import type { Ref } from 'vue'
 

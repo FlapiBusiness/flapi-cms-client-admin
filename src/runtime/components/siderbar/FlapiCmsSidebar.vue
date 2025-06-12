@@ -41,7 +41,8 @@ import FlapiCollapse from '#cmsadmin/components/display/FlapiCollapse.vue'
 import type { ComputedRef } from 'vue'
 import type { FlapiComponentCardProps } from '#cmsadmin/components/card/ComponentCard.vue'
 import type { FlapiCmsComponentCardProps } from '../card/FlapiCmsComponentCard.vue'
-import type { FlapiCmsComponent } from '#cmsadmin/composables/type/FlapiCmsComponent'
+import type { FlapiCmsComponent } from '#cmsadmin/core/types/FlapiCmsComponent'
+import { useComponentsMeta } from '#cmsadmin/core/others/useComponentsMeta'
 import { computed } from 'vue'
 
 /**

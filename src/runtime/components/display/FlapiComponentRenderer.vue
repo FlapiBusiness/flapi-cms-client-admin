@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 // import { defineAsyncComponent } from 'vue'
-import { getComponentName } from '#cmsadmin/components/sections/componentDisplayMap'
+import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
 import type { CmsComponentSkeleton } from '#cmsadmin/components/type/CmsComponentSkeleton'
 
 defineProps({

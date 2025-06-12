@@ -1,5 +1,5 @@
 import rawComponentsMeta from '#cmsadmin/assets/components-meta.json'
-import type { FlapiCmsComponent } from './type/FlapiCmsComponent'
+import type { FlapiCmsComponent } from '#cmsadmin/core/types/FlapiCmsComponent'
 
 const componentsMeta: FlapiCmsComponent[] = rawComponentsMeta as FlapiCmsComponent[]
 

@@ -1,6 +1,6 @@
 // src/components/sections/componentDisplayMap.ts
-import FlapiHeroComponent from './FlapiHeroSection.vue'
-import FlapiFooterComponent from './FlapiFooterSection.vue'
+import FlapiHeroComponent from '#cmsadmin/components/sections/FlapiHeroSection.vue'
+import FlapiFooterComponent from '#cmsadmin/components/sections/FlapiFooterSection.vue'
 // ajoute d'autres composants ici
 
 const componentDisplayMap: Record<string, any> = {

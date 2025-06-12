@@ -89,7 +89,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import type { Ref } from 'vue'
-import type { FlapiProp, DefaultValue, FlapiCmsComponent } from '#cmsadmin/composables/type/FlapiCmsComponent'
+import type { FlapiProp, DefaultValue, FlapiCmsComponent } from '#cmsadmin/core/types/FlapiCmsComponent'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'
 import ListeIcons from '#cmsadmin/assets/icons/liste.json'
 
