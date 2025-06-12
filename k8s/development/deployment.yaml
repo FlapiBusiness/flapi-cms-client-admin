@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-designsystem-flapi-deployment
+  namespace: dev-designsystem-flapi
+  labels:
+    app: dev-designsystem-flapi
+spec:
+  selector:
+    matchLabels:
+      app: dev-designsystem-flapi
+  template:
+    metadata:
+      labels:
+        app: dev-designsystem-flapi
+    spec:
+      containers:
+        - name: dev-designsystem-flapi
+          image: corentin35/flapi-cms-designsystem:develop-${TAG_VERSION}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: '80'
+          resources:
+            requests:
+              cpu: '300m'
+              memory: '400Mi'
+            limits:
+              cpu: '600m'
+              memory: '800Mi'
+      imagePullSecrets:
+        - name: regcred

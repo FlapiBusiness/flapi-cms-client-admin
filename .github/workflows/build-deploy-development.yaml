@@ -1,0 +1,76 @@
+name: build-deploy-development
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  tests_build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js to latest version LTS and setup cache
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+
+      - name: Install dependencies for project
+        run: npm install
+
+      - name: Lint TypeScript and ESLint for project
+        run: npm run lint:eslint && npm run lint:ts
+
+      - name: Run Unit Tests
+        run: npm run test:unit:staging-prod
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./docker/Dockerfile
+          push: true
+          tags: corentin35/flapi-cms-designsystem:develop-${{ github.sha }}
+
+      - name: Replace image tag in deployment.yaml for Kubernetes
+        run: |
+          sed -i 's/\${TAG_VERSION}/'${{ github.sha }}'/g' k8s/development/deployment.yaml
+
+      - name: Connect to the cluster K3S for deploy
+        uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBECONFIG }}
+        with:
+          args: |
+            apply -f k8s/development/namespace.yaml
+            -f k8s/development/certificate.yaml
+            -f k8s/development/docker-registry-secret.yaml
+            -f k8s/development/deployment.yaml
+            -f k8s/development/ingress.yaml
+            -f k8s/development/service.yaml
+
+      - name: Build project for module nuxt to package npm
+        run: npm run build:modulenuxt:prod
+
+      - name: Update version in package.json with commit SHA
+        run: |
+          COMMIT_SHA=$(echo ${{ github.sha }} | cut -c1-8)
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          NEW_VERSION="$CURRENT_VERSION-dev-$COMMIT_SHA"
+          npm version $NEW_VERSION --no-git-tag-version --allow-same-version
+
+      - name: Publish package to registry npm
+        run: npm publish --access public --tag dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-designsystem-flapi-deployment
+  namespace: prod-designsystem-flapi
+  labels:
+    app: prod-designsystem-flapi
+spec:
+  selector:
+    matchLabels:
+      app: prod-designsystem-flapi
+  template:
+    metadata:
+      labels:
+        app: prod-designsystem-flapi
+    spec:
+      containers:
+        - name: prod-designsystem-flapi
+          image: corentin35/flapi-cms-designsystem:${TAG_VERSION}
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: '80'
+          resources:
+            requests:
+              cpu: '300m'
+              memory: '400Mi'
+            limits:
+              cpu: '600m'
+              memory: '800Mi'
+      imagePullSecrets:
+        - name: regcred

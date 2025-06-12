@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dev-designsystem-flapi-ingress
+  namespace: dev-designsystem-flapi
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - dev.designsystem.flapi.org
+      secretName: dev-designsystem-flapi-tls
+  rules:
+    - host: dev.designsystem.flapi.org
+      http:
+        paths:
+          - pathType: Prefix
+            path: '/'
+            backend:
+              service:
+                name: dev-designsystem-flapi-service
+                port:
+                  number: 80

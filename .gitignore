@@ -1,0 +1,65 @@
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
+dist
+dist-ssr
+src-app/.output
+src-app/.data
+src-app/.nuxt
+src-app/.nitro
+src-app/.cache
+src-app/dist
+src-app/dist-ssr
+
+# Node dependencies
+node_modules
+src-app/node_modules
+
+# Optional eslint cache
+.eslintcache
+src-app/.eslintcache
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor files
+.fleet
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+.DS_Store
+
+# Tests Reports
+tests/e2e/test-reports/
+tests/unit/test-reports/
+src-app/tests/e2e/test-reports/
+src-app/tests/unit/test-reports/
+
+# Cypress
+cypress/screenshots
+cypress/videos
+cypress/downloads
+src-app/cypress/screenshots
+src-app/cypress/videos
+src-app/cypress/downloads
+
+# Storybook
+*storybook.log
+storybook-static
+
+#
+tsconfig.temp.json

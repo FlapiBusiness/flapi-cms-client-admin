@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.build.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "#cmsadmin/*": ["src/runtime/*"],
+      "#cmsadmin/core": ["src/runtime/core/index"],
+      "#cmsadmin/core/*": ["src/runtime/core/*"],
+      "#cmsadmin/components/*": ["src/runtime/components/*"],
+      "#cmsadmin/stores/*": ["src/runtime/stores/*"],
+      "#cmsadmin/layouts/*": ["src/runtime/layouts/*"],
+      "#cmsadmin/pages/*": ["src/runtime/pages/*"]
+    }
+  }
+}

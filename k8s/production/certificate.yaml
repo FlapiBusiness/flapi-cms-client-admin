@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: prod-designsystem-flapi-cert
+  namespace: prod-designsystem-flapi
+spec:
+  secretName: prod-designsystem-flapi-tls
+  dnsNames:
+    - designsystem.flapi.org
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
