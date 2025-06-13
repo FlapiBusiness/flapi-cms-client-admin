@@ -52,7 +52,7 @@ const props: FlapiCollapseProps = defineProps({
   },
 })
 
-const isOpen: Ref<boolean> = ref(props.defaultOpen)
+const isOpen: Ref<boolean> = ref(props.defaultOpen || false)
 
 /**
  * @description
