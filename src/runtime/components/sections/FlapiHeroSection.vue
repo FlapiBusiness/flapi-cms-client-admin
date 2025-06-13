@@ -24,6 +24,7 @@
         <img :src="props.imageUrl" alt="Hero Image" class="w-full" />
       </div>
     </div>
+    <slot></slot>
   </section>
 </template>
 

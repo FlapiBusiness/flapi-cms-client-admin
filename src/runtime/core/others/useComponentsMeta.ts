@@ -57,7 +57,7 @@ export const useComponentsMeta: () => {
    */
   const getComponentProps: (name: string) => any[] = (name: string): any[] => {
     const component: FlapiCmsComponent | undefined = getComponent(name)
-    return component?.props || []
+    return component?.props ? Object.values(component.props) : []
   }
 
   return {

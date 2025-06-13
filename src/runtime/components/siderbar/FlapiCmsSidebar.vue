@@ -1,6 +1,6 @@
 <template>
-  <nav class="flex h-full text-sm">
-    <div class="relative w-[400px] bg-gray-500 shadow-md">
+  <nav class="flex h-full max-h-screen overflow-y-scroll text-sm">
+    <div class="relative h-fit w-[400px] bg-gray-500 shadow-md">
       <FlapiCollapse title="Flapi Components" defaultOpen>
         <div class="m-4 grid grid-cols-2 items-center gap-4">
           <FlapiComponentCard

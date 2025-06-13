@@ -1,5 +1,3 @@
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
-
 /**
  * FlapiCmsComponent interface definition
  * @description This interface defines the structure of a component's metadata in the Flapi system.
@@ -15,10 +13,11 @@ import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkel
 export type FlapiCmsComponent = {
   name: string
   description: string
-  props?: FlapiProp[]
+  props?: Record<string, any>
   category: string
   slots?: FlapiSlot[]
   events?: FlapiEvent[]
+  order?: number
   previewImage?: string
 }
 
@@ -60,7 +59,8 @@ export type DefaultValue = {
  */
 export type FlapiSlot = {
   name: string
-  components?: CmsComponentSkeleton[]
+  text?: string
+  components?: FlapiCmsComponent[]
   scoped?: boolean
   bindings?: FlapiBinding[]
 }

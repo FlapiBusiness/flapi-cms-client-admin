@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import type { FlapiComponentCardProps } from '#cmsadmin/components/card/ComponentCard.vue'
 import type { FlapiCmsComponentCardProps } from '#cmsadmin/components/card/FlapiCmsComponentCard.vue'
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
+import type { FlapiCmsComponent } from '#cmsadmin/core'
 
 /**
  * CmsComponentStore interface.
@@ -10,7 +10,7 @@ import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkel
 export interface CmsComponentStore {
   name: string
   order: number
-  data: CmsComponentSkeleton
+  data: FlapiCmsComponent
   page_slug?: string
 }
 
