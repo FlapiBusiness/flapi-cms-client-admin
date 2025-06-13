@@ -4,7 +4,7 @@
     @click="emit('select', props)"
   >
     <div class="flex w-full flex-col items-center">
-      <img :name="label" :src="props.imageUrl" :alt="props.label" />
+      <img :src="props.imageUrl" :alt="props.label" />
       <p class="mt-4 text-center text-base font-semibold text-light-400">
         {{ label }}
       </p>

@@ -1,40 +1,48 @@
 <template>
-  <component :is="getComponentName(component.name)" v-bind="component.props">
-    <template
-      v-for="slot in component.slots"
-      :key="slot.name"
-      #[slot.name]="slotProps"
-      v-slot="{ slot }: { slot: { name: string } }"
-    >
-      <slot :name="slot.name" v-bind="slotProps || {}">
-        <div class="text-center text-sm text-gray-500">
-          {{ slot.name }}
+  <div v-for="(childComponent, index) in childComponents" :key="index">
+    <component :is="getComponentName(childComponent.name)" v-bind="childComponent.props">
+      <div v-if="childComponent.slots && childComponent.slots.length > 0">
+        <div v-for="slot in childComponent.slots">
+          <div
+            v-if="!slot.components && edition && !slot.text"
+            class="m-1 rounded border border-gray-300 p-2 text-gray-500"
+          >
+            Composent déposable ici
+          </div>
+          <div v-if="slot.text">
+            {{ slot.text }}
+          </div>
+          <FlapiComponentRenderer :childComponents="slot?.components ?? []" :edition="edition">
+          </FlapiComponentRenderer>
         </div>
-      </slot>
-
-      <FlapiComponentRenderer
-        v-for="(childComponent, index) in component.slots"
-        :key="childComponent.name"
-        :component="childComponent.components?.[index]"
-      />
-    </template>
-  </component>
+      </div>
+    </component>
+  </div>
 </template>
 
 <script setup lang="ts">
 // import { defineAsyncComponent } from 'vue'
 import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
+import type { FlapiCmsComponent } from '#cmsadmin/core'
+
+/**
+ * @description
+ * FlapiComponentRendererProps represents the props for the FlapiComponentRenderer component.
+ * @property {FlapiCmsComponent} component - The component to render.
+ */
+export type FlapiComponentRendererProps = {
+  childComponents: FlapiCmsComponent[]
+  edition?: boolean
+}
 
 defineProps({
-  component: {
-    type: Object as () => CmsComponentSkeleton,
-    /**
-     * @description
-     * The component to render, which should have a structure like:
-     * @returns {CmsComponentSkeleton} The component skeleton object.
-     */
-    default: () => ({}),
+  childComponents: {
+    type: Object as () => FlapiCmsComponent[],
+    required: true,
+  },
+  edition: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>

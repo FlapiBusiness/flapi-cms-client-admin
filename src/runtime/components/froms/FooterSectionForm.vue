@@ -65,7 +65,7 @@
 
 <script lang="ts" setup>
 import { computed, ref, type ComputedRef } from 'vue'
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
+import type { FlapiCmsComponent } from '#cmsadmin/core'
 import type { Ref } from 'vue'
 
 /**
@@ -105,8 +105,8 @@ const values: Ref<FlapiFooterPayload> = ref<FlapiFooterPayload>({
   ],
 })
 
-const emit: (event: 'submit', values: CmsComponentSkeleton) => void = defineEmits<{
-  (event: 'submit', value: CmsComponentSkeleton): void
+const emit: (event: 'submit', values: FlapiCmsComponent) => void = defineEmits<{
+  (event: 'submit', value: FlapiCmsComponent): void
 }>()
 
 const errorMessage: Ref<string | null> = ref<string | null>(null)
@@ -128,7 +128,7 @@ const formIsValid: ComputedRef<boolean> = computed(() => {
  */
 const submit: () => void = () => {
   if (formIsValid.value) {
-    const component: CmsComponentSkeleton = {
+    const component: FlapiCmsComponent = {
       name: 'FlapiFooterSection',
       description: 'Footer section component',
       category: 'Flapi Components',

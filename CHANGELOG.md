@@ -2,24 +2,22 @@
 
 ## 1.0.0 (2025-06-12)
 
-
 ### Features
 
-* init project ([ebcf3af](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/ebcf3af369f573dc2cf093563095fde8b278c418))
-* remove not use ([b97217f](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/b97217f0968bc626c798354088cd7aa031d8a63c))
-* rename scripts npm ([8af0f7c](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/8af0f7ca77b0877bb8fe5aa2b920f1b0a29b1968))
-
+- init project ([ebcf3af](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/ebcf3af369f573dc2cf093563095fde8b278c418))
+- remove not use ([b97217f](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/b97217f0968bc626c798354088cd7aa031d8a63c))
+- rename scripts npm ([8af0f7c](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/8af0f7ca77b0877bb8fe5aa2b920f1b0a29b1968))
 
 ### Bug Fixes
 
-* fixed ci ([96bb766](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/96bb766e8c75f715960f222e01f9bfe9ab4fea5a))
-* fixed ci ([3beca78](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/3beca78f3d5c724356c1b0ba30c43b707d1dedcc))
-* fixed ci ([a2c5960](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/a2c5960c3f825afb1332219f6cefc645e9d378bf))
-* fixed error ([6c6adce](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/6c6adce4b5c87660c6fc9d7913212cf0aff81552))
-* fixed error ([db318aa](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/db318aa6bfca6716ae4f54557c49b7bdfd727b09))
-* fixed unit tests ([ee686a9](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/ee686a958c9be4cc36a4265e2855f5ca35d4f178))
-* fixed vue-tsc error type ([5c5d280](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/5c5d280d0844fb597d6ccf3839d1a0c3483f8572))
-* jsdoc ([14e7c04](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/14e7c0443defe5042bf6f95a121016fc4d896ce8))
+- fixed ci ([96bb766](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/96bb766e8c75f715960f222e01f9bfe9ab4fea5a))
+- fixed ci ([3beca78](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/3beca78f3d5c724356c1b0ba30c43b707d1dedcc))
+- fixed ci ([a2c5960](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/a2c5960c3f825afb1332219f6cefc645e9d378bf))
+- fixed error ([6c6adce](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/6c6adce4b5c87660c6fc9d7913212cf0aff81552))
+- fixed error ([db318aa](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/db318aa6bfca6716ae4f54557c49b7bdfd727b09))
+- fixed unit tests ([ee686a9](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/ee686a958c9be4cc36a4265e2855f5ca35d4f178))
+- fixed vue-tsc error type ([5c5d280](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/5c5d280d0844fb597d6ccf3839d1a0c3483f8572))
+- jsdoc ([14e7c04](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/14e7c0443defe5042bf6f95a121016fc4d896ce8))
 
 ## [1.4.0](https://github.com/FlapiBusiness/flapi-cms-designsystem/compare/v1.3.0...v1.4.0) (2025-06-10)
 

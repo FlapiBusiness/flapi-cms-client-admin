@@ -16,10 +16,13 @@ type ComponentMeta = {
   events?: Record<string, any>
   slots?: Record<string, any>
   category: string
+  previewImage?: string
 }
 
 const componentsDir = path.resolve('node_modules/@flapi/cms-designsystem/dist/runtime/components')
 const iconsDir = path.join(componentsDir, 'icons')
+const previewsDir = path.join(componentsDir, '../assets/previews')
+const publicPreviewsDir = path.resolve('playground/public/previews')
 
 // 🎯 Chemins de sortie dans src/runtime/assets/
 const outputDir = path.resolve('src/runtime/assets')
@@ -41,13 +44,47 @@ const getFilesRecursively = (dir: string, extension = '.vue', fileList: string[]
   return fileList
 }
 
+const copyPreviewImages = () => {
+  if (!fs.existsSync(previewsDir)) {
+    console.warn(`⚠️ Le dossier ${previewsDir} n'existe pas.`)
+    return
+  }
+
+  // Créer le dossier playground/public/previews s'il n'existe pas
+  fs.mkdirSync(publicPreviewsDir, { recursive: true })
+
+  // Copier toutes les images du dossier previews
+  const files = fs.readdirSync(previewsDir)
+  for (const file of files) {
+    const src = path.join(previewsDir, file)
+    const dest = path.join(publicPreviewsDir, file)
+    if (fs.existsSync(src) && fs.statSync(src).isFile()) {
+      fs.copyFileSync(src, dest)
+      console.log(`✅ Copié ${file} vers ${dest}`)
+    }
+  }
+  console.log(`✅ Toutes les images ont été copiées dans ${publicPreviewsDir}`)
+}
+
 const generateComponentMeta = async () => {
   const vueFiles = getFilesRecursively(componentsDir)
   const componentsMeta: ComponentMeta[] = []
+  const previewsDir: string = path.join(componentsDir, '../assets/previews')
 
   for (const filePath of vueFiles) {
     try {
       const doc = await parse(filePath)
+      const componentName: string = doc.displayName
+      let previewImage: string | undefined
+      const possibleExtensions: string[] = ['.png', '.jpg', '.jpeg', '.svg']
+      for (const ext of possibleExtensions) {
+        const imagePath: string = path.join(previewsDir, `${componentName}${ext}`)
+        if (fs.existsSync(imagePath)) {
+          previewImage = `/previews/${componentName}${ext}`
+          break
+        }
+      }
+
       componentsMeta.push({
         name: doc.displayName,
         description: doc.description,
@@ -55,6 +92,7 @@ const generateComponentMeta = async () => {
         events: doc.events,
         slots: doc.slots,
         category: path.relative(componentsDir, path.dirname(filePath)),
+        previewImage,
       })
     } catch (error) {
       console.error(`❌ Failed to parse ${filePath}:`, (error as Error).message)
@@ -85,6 +123,7 @@ const generateIconList = () => {
 const run = async () => {
   await generateComponentMeta()
   generateIconList()
+  copyPreviewImages()
 }
 
 run()

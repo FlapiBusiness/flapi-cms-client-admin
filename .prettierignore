@@ -47,3 +47,6 @@ cypress/downloads
 # Android / iOS
 android/
 ios/
+
+# Markdown
+CHANGELOG.md

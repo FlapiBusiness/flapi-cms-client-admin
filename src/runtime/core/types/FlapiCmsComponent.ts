@@ -1,5 +1,3 @@
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
-
 /**
  * FlapiCmsComponent interface definition
  * @description This interface defines the structure of a component's metadata in the Flapi system.
@@ -10,14 +8,17 @@ import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkel
  * @property {string} category - The category to which the component belongs.
  * @property {FlapiSlot[]} [slots] - An optional array of slots that the component can use.
  * @property {FlapiEvent[]} [events] - An optional array of events that the component can emit.
+ * @property {string} [previewImage] - An optional URL or path to a preview image for the component.
  */
 export type FlapiCmsComponent = {
   name: string
   description: string
-  props?: FlapiProp[]
+  props?: Record<string, any>
   category: string
   slots?: FlapiSlot[]
   events?: FlapiEvent[]
+  order?: number
+  previewImage?: string
 }
 
 /**
@@ -58,7 +59,8 @@ export type DefaultValue = {
  */
 export type FlapiSlot = {
   name: string
-  components?: CmsComponentSkeleton[]
+  text?: string
+  components?: FlapiCmsComponent[]
   scoped?: boolean
   bindings?: FlapiBinding[]
 }

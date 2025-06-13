@@ -6,7 +6,7 @@
         <h1 class="text-4xl font-bold text-gray-900 md:text-5xl">
           {{ props.title }}
         </h1>
-        <p class="mt-4 text-lg text-gray-600">
+        <p class="text-lg mt-4 text-gray-600">
           {{ props.content }}
         </p>
         <div v-if="props.showButton" class="mt-6">
@@ -24,6 +24,7 @@
         <img :src="props.imageUrl" alt="Hero Image" class="w-full" />
       </div>
     </div>
+    <slot></slot>
   </section>
 </template>
 

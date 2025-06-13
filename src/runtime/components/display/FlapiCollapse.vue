@@ -1,6 +1,9 @@
 <template>
   <div class="border-b border-gray-200">
-    <button class="flex w-full items-center justify-between py-4 text-left font-medium transition-all" @click="toggle">
+    <button
+      class="flex w-full items-center justify-between py-4 pr-1 text-left font-medium transition-all"
+      @click="toggle"
+    >
       <span class="ml-4 text-base font-semibold text-light-400">{{ title }}</span>
       <FlapiIcon
         :name="isOpen ? 'ChevronRight' : 'ChevronLeft'"
@@ -49,7 +52,7 @@ const props: FlapiCollapseProps = defineProps({
   },
 })
 
-const isOpen: Ref = ref(props.defaultOpen)
+const isOpen: Ref<boolean> = ref(props.defaultOpen || false)
 
 /**
  * @description

@@ -4,7 +4,7 @@
   >
     <div class="felx-row flex items-center">
       <h1 class="text-xl font-medium text-light-400">{{ component.name }}</h1>
-      <span class="m-4 rounded bg-indigo-100 px-2 py-1 text-xs font-medium text-indigo-800">
+      <span class="text-xs m-4 rounded bg-indigo-100 px-2 py-1 font-medium text-indigo-800">
         {{ component.category }}
       </span>
     </div>
@@ -66,7 +66,7 @@
             v-else-if="prop.type.elements?.length"
             v-model:value="formValues.props[prop.name]"
             :label="prop.name"
-            :options="prop.type.elements.map((el) => ({ value: el.name, label: el.name }))"
+            :options="prop.type.elements.map((el: Element) => ({ value: el.name, label: el.name }))"
           />
 
           <div
@@ -74,6 +74,18 @@
             :slotContent="'Default Value: ' + getDefaultValue(prop.defaultValue)"
             class="text-xs"
           ></div>
+        </div>
+      </div>
+
+      <div v-if="component.slots && component.slots.length" class="space-y-4">
+        <FlapiLabel> Text du composant peux aussi contenir des composants une fois ajouté </FlapiLabel>
+        <div v-for="(slot, slotName) in component.slots" :key="slotName">
+          <FlapiInput
+            v-model:value="formValues.slots[slotName].text"
+            :label="slotName"
+            placeholder="Enter slot content"
+            type="text"
+          />
         </div>
       </div>
 
@@ -92,6 +104,15 @@ import type { Ref } from 'vue'
 import type { FlapiProp, DefaultValue, FlapiCmsComponent } from '#cmsadmin/core/types/FlapiCmsComponent'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'
 import ListeIcons from '#cmsadmin/assets/icons/liste.json'
+
+/**
+ * @description
+ * This is the model value for the Flapi CMS component.
+ * @property {string} name - The name of the component.
+ */
+export type Element = {
+  name: string
+}
 
 const iconsList: string[] = ListeIcons as string[]
 
@@ -147,6 +168,8 @@ const getDefaultValue: (defaultValue: DefaultValue) => any = (defaultValue: Defa
   //   return Number(defaultValue.value)
   // }
 
+  defaultValue.value = defaultValue.value.replace(/'/g, '').replace(/"/g, '')
+
   return defaultValue.value
 }
 
@@ -160,14 +183,6 @@ const emit: (event: 'submit', values: Record<string, any>) => void = defineEmits
  * It validates the form values and emits the 'submit' event with the values.
  */
 const submit: () => void = () => {
-  // for (const key in formValues.value) {
-  //   if (formValues.value[key] === undefined || formValues.value[key] === null) {
-  //     formValues.value[key] = ''
-  //   }
-  // }
-
-  console.log('Form submitted with values:', JSON.stringify(formValues.value, null, 2))
-
   emit('submit', formValues.value)
 }
 
