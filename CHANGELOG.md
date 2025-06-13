@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.1.0](https://github.com/FlapiBusiness/flapi-cms-client-admin/compare/v1.0.0...v1.1.0) (2025-06-13)
+
+
+### Features
+
+* add component image ([306c323](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/306c3230c286099c85ce774c75f864773f2a2776))
+* add component image ([096a8bb](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/096a8bbeabe07db54cfd9b057087d545a321711f))
+* add component images ([7ff92b6](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/7ff92b66e25b65891877c956d5ba878a4986280f))
+* add minus chevron ([522d0fe](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/522d0fed8e9e16b09584bbf83bde739dc58de559))
+* enhance Flapi components with improved props handling, slot rendering, and drag-and-drop functionality ([d6ddbad](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/d6ddbad5435a9efe7fd5ed194aaea225f81018b9))
+* enhance FlapiComponentRenderer and FlapiComponentForm for improved slot handling and drag-and-drop functionality ([25d858d](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/25d858d191b952a4341a57c9f33435e9dd6103a1))
+* enhance FlapiComponentRenderer and FlapiComponentForm for improved slot handling and drag-and-drop functionality ([0e30c6f](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/0e30c6f9606630fb244cc4ff5c487c6e9a48ed15))
+* merge ([e9df679](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/e9df6798b4eb52c7e7a7d7ba5dda1138b7c3e452))
+* update FlapiComponentRenderer to handle child components and improve slot rendering ([fe16d16](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/fe16d160cd944f64256cf30c89a84f271076fc6d))
+
+
+### Bug Fixes
+
+* fixed ([9f14743](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/9f1474329efcc56916f344bafc33609908a272d4))
+* improve layout responsiveness and scrolling behavior in sidebar and cms layout ([c03c36b](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/c03c36b6e1db1acf5d1dbd42137ebe8a1f156da7))
+* remove unused FlapiProp import from FlapiCmsComponentCard ([bde251f](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/bde251f7b022ad41bea0cb61357dfda730a7cafd))
+* toto ([da8d6f1](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/da8d6f1a3d9593bd9ebf1fac576a728be3a8561e))
+* toto ([7d63706](https://github.com/FlapiBusiness/flapi-cms-client-admin/commit/7d63706b615995b6a0d134227b0bd74ea3f10838))
+
 ## 1.0.0 (2025-06-12)
 
 ### Features

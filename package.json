@@ -1,6 +1,6 @@
 {
   "name": "@flapi/cms-admin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "description": "Flapi CMS Client Admin Module",
   "homepage": "https://github.com/FlapiBusiness/flapi-cms-client-admin.git",
