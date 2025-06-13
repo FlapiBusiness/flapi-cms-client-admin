@@ -3,8 +3,14 @@
     <component :is="getComponentName(childComponent.name)" v-bind="childComponent.props">
       <div v-if="childComponent.slots && childComponent.slots.length > 0">
         <div v-for="slot in childComponent.slots">
-          <div v-if="!slot.components && edition" class="m-1 rounded border border-gray-300 p-2 text-gray-500">
+          <div
+            v-if="!slot.components && edition && !slot.text"
+            class="m-1 rounded border border-gray-300 p-2 text-gray-500"
+          >
             Composent déposable ici
+          </div>
+          <div v-if="slot.text">
+            {{ slot.text }}
           </div>
           <FlapiComponentRenderer :childComponents="slot?.components ?? []" :edition="edition">
           </FlapiComponentRenderer>

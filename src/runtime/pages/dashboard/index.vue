@@ -33,8 +33,14 @@
       v-bind="c.data.props"
     >
       <div v-for="slot in c.data.slots" :component="slot">
-        <div v-if="!slot.components" class="m-1 rounded border border-gray-300 p-2 text-center text-gray-500">
+        <div
+          v-if="!slot.components && !slot.text"
+          class="m-1 rounded border border-gray-300 p-2 text-center text-gray-500"
+        >
           Composent déposable ici
+        </div>
+        <div v-if="slot.text" class="m-1 rounded border border-gray-300 p-2 text-center text-gray-500">
+          {{ slot.text }}
         </div>
         <FlapiComponentRenderer :childComponents="slot.components ?? []" :edition="true" />
       </div>

@@ -57,6 +57,7 @@ export type DefaultValue = {
  */
 export type FlapiSlot = {
   name: string
+  text?: string
   components?: FlapiCmsComponent[]
   scoped?: boolean
   bindings?: FlapiBinding[]

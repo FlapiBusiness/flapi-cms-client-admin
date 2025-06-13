@@ -7,6 +7,9 @@
       v-bind="component.data.props"
     >
       <div v-for="slot in component.data.slots" :component="slot">
+        <div v-if="slot.text">
+          {{ slot.text }}
+        </div>
         <FlapiComponentRenderer :childComponents="slot.components ?? []" />
       </div>
     </component>

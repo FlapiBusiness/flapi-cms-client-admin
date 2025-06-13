@@ -77,19 +77,15 @@
         </div>
       </div>
 
-      <div v-if="component.slots && Object.keys(component.slots).length" class="space-y-4">
-        <div id="slots-section-title" slotContent="Slots" class="text-sm font-medium"></div>
-
-        <div v-for="(slot, slotName) in component.slots" :key="slotName" class="space-y-2">
-          <div class="flex items-center justify-between">
-            <div :slotContent="slotName" class="block text-sm font-medium capitalize text-gray-700"></div>
-            <FlapiInput
-              v-model:value="formValues.slots[slotName]"
-              :label="slotName"
-              placeholder="Enter slot content"
-              type="text"
-            />
-          </div>
+      <div v-if="component.slots && component.slots.length" class="space-y-4">
+        <FlapiLabel> Text du composant peux aussi contenir des composants une fois ajouté </FlapiLabel>
+        <div v-for="(slot, slotName) in component.slots" :key="slotName">
+          <FlapiInput
+            v-model:value="formValues.slots[slotName].text"
+            :label="slotName"
+            placeholder="Enter slot content"
+            type="text"
+          />
         </div>
       </div>
 
