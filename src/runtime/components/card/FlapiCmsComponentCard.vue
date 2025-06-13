@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import type { FlapiProp, FlapiSlot, FlapiEvent } from '#cmsadmin/core/types/FlapiCmsComponent'
+import type { FlapiSlot, FlapiEvent } from '#cmsadmin/core/types/FlapiCmsComponent'
 import type { PropType } from 'vue'
 /**
  * @description
