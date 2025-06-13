@@ -59,7 +59,7 @@
 import { ref, computed } from 'vue'
 import type { Ref, ComputedRef } from 'vue'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'
-import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkeleton'
+import type { FlapiCmsComponent } from '#cmsadmin/core'
 
 /**
  * This is the model value for the HeroSection component.
@@ -91,8 +91,8 @@ const values: Ref<HeroSectionPayload> = ref({
 })
 const errorMessage: Ref<string | null> = ref(null)
 
-const emit: (event: 'submit', values: CmsComponentSkeleton) => void = defineEmits<{
-  (event: 'submit', values: CmsComponentSkeleton): void
+const emit: (event: 'submit', values: FlapiCmsComponent) => void = defineEmits<{
+  (event: 'submit', values: FlapiCmsComponent): void
 }>()
 
 /**
@@ -100,7 +100,7 @@ const emit: (event: 'submit', values: CmsComponentSkeleton) => void = defineEmit
  * @returns {void}
  */
 const submit: () => void = (): void => {
-  const component: CmsComponentSkeleton = {
+  const component: FlapiCmsComponent = {
     name: 'HeroSection',
     description: 'Hero section component',
     category: 'Flapi Components',

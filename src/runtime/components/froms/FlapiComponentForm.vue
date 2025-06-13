@@ -77,6 +77,22 @@
         </div>
       </div>
 
+      <div v-if="component.slots && Object.keys(component.slots).length" class="space-y-4">
+        <div id="slots-section-title" slotContent="Slots" class="text-sm font-medium"></div>
+
+        <div v-for="(slot, slotName) in component.slots" :key="slotName" class="space-y-2">
+          <div class="flex items-center justify-between">
+            <div :slotContent="slotName" class="block text-sm font-medium capitalize text-gray-700"></div>
+            <FlapiInput
+              v-model:value="formValues.slots[slotName]"
+              :label="slotName"
+              placeholder="Enter slot content"
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+
       <div class="border-t border-gray-200 pt-4">
         <FlapiButton type="submit" variant="primary" size="md" class="w-full" @click="submit"
           >Ajouter le composant</FlapiButton
@@ -147,6 +163,8 @@ const getDefaultValue: (defaultValue: DefaultValue) => any = (defaultValue: Defa
   //   return Number(defaultValue.value)
   // }
 
+  defaultValue.value = defaultValue.value.replace(/'/g, '').replace(/"/g, '')
+
   return defaultValue.value
 }
 
@@ -172,6 +190,8 @@ const submit: () => void = () => {
 }
 
 onMounted(() => {
+  console.log('Mounted FlapiComponentForm with component:', props.component.slots)
+
   formValues.value.props = props.component.props?.reduce((acc: Record<string, any>, prop: FlapiProp) => {
     if (prop.type.name === '(typeof iconsList)[number]') {
       acc[prop.name] = prop.defaultValue ? getDefaultValue(prop.defaultValue) : 'Account'
