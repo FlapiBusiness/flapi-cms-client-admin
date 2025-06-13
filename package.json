@@ -70,7 +70,8 @@
     "lint:eslint": "eslint .",
     "lint:ts": "vue-tsc --noEmit",
     "lint:fix": "prettier --write --list-different . && npm run lint:prettier --fix && npm run lint:eslint --fix",
-    "prepare": "husky && nuxi prepare"
+    "prepare": "husky && nuxi prepare",
+    "link-designsystem": "npm link @flapi/cms-designsystem"
   },
   "dependencies": {
     "@flapi/cms-designsystem": "^1.4.0",

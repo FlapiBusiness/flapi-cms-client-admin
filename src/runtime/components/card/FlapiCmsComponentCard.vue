@@ -1,50 +1,55 @@
 <template>
   <div
-    class="group relative flex h-[90px] w-[170px] cursor-pointer flex-col items-center justify-center rounded-2xl border-[3px] border-transparent bg-gray-300 p-4 transition hover:border-primary-300"
+    class="flex h-[170px] w-[170px] cursor-pointer flex-col items-start justify-center rounded-2xl border-[3px] border-transparent bg-gray-300 p-4 transition hover:border-primary-300"
     @click="emit('select', props)"
   >
-    <h3 class="text-center text-base font-semibold text-light-400">{{ props.name }}</h3>
-
-    <div
-      class="pointer-events-none absolute -top-2 left-1/2 z-50 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100"
-    >
-      <div class="min-w-[200px] max-w-xs rounded-md bg-gray-800 p-3 text-sm text-white shadow-lg">
-        <div class="space-y-2">
-          <p v-if="props.category" class="font-medium"><span class="font-bold">Category:</span> {{ props.category }}</p>
-
-          <p v-if="props.description" class="text-gray-300">
-            {{ props.description }}
-          </p>
-
-          <div v-if="props.props?.length" class="pt-2">
-            <p class="font-bold">Props ({{ props.props.length }}):</p>
-            <ul class="list-inside list-disc pl-2">
-              <li v-for="prop in props.props" :key="prop.name" class="text-gray-300">
-                {{ prop.name }}
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="props.slots?.length" class="pt-2">
-            <p class="font-bold">Slots ({{ props.slots.length }}):</p>
-            <ul class="list-inside list-disc pl-2">
-              <li v-for="slot in props.slots" :key="slot.name" class="text-gray-300">
-                {{ slot.name }}
-              </li>
-            </ul>
-          </div>
-
-          <div v-if="props.events?.length" class="pt-2">
-            <p class="font-bold">Events ({{ props.events.length }}):</p>
-            <ul class="list-inside list-disc pl-2">
-              <li v-for="event in props.events" :key="props.name" class="text-gray-300">
-                {{ event }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <div class="flex w-full flex-col items-center">
+      <img v-if="props.imageUrl" :src="props.imageUrl" :alt="props.name" />
+      <p class="mt-4 text-center text-base font-semibold text-light-400">
+        {{ props.name }}
+      </p>
     </div>
+
+    <!--    <div-->
+    <!--      class="pointer-events-none absolute -top-2 left-1/2 z-50 -translate-x-1/2 opacity-0 transition-opacity group-hover:opacity-100"-->
+    <!--    >-->
+    <!--      <div class="min-w-[200px] max-w-xs rounded-md bg-gray-800 p-3 text-sm text-white shadow-lg">-->
+    <!--        <div class="space-y-2">-->
+    <!--          <p v-if="props.category" class="font-medium"><span class="font-bold">Category:</span> {{ props.category }}</p>-->
+
+    <!--          <p v-if="props.description" class="text-gray-300">-->
+    <!--            {{ props.description }}-->
+    <!--          </p>-->
+
+    <!--          <div v-if="props.props?.length" class="pt-2">-->
+    <!--            <p class="font-bold">Props ({{ props.props.length }}):</p>-->
+    <!--            <ul class="list-inside list-disc pl-2">-->
+    <!--              <li v-for="prop in props.props" :key="prop.name" class="text-gray-300">-->
+    <!--                {{ prop.name }}-->
+    <!--              </li>-->
+    <!--            </ul>-->
+    <!--          </div>-->
+
+    <!--          <div v-if="props.slots?.length" class="pt-2">-->
+    <!--            <p class="font-bold">Slots ({{ props.slots.length }}):</p>-->
+    <!--            <ul class="list-inside list-disc pl-2">-->
+    <!--              <li v-for="slot in props.slots" :key="slot.name" class="text-gray-300">-->
+    <!--                {{ slot.name }}-->
+    <!--              </li>-->
+    <!--            </ul>-->
+    <!--          </div>-->
+
+    <!--          <div v-if="props.events?.length" class="pt-2">-->
+    <!--            <p class="font-bold">Events ({{ props.events.length }}):</p>-->
+    <!--            <ul class="list-inside list-disc pl-2">-->
+    <!--              <li v-for="event in props.events" :key="props.name" class="text-gray-300">-->
+    <!--                {{ event }}-->
+    <!--              </li>-->
+    <!--            </ul>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
   </div>
 </template>
 

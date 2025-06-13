@@ -1,7 +1,6 @@
 <template>
   <div class="grid min-h-screen w-full grid-cols-[auto,1fr] overflow-x-hidden">
     <FlapiCmsSidebar @select="triggerFlapiCmsComponent($event)" />
-
     <div class="px-4">
       <slot />
     </div>

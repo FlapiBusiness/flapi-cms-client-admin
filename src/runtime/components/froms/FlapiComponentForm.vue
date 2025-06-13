@@ -4,7 +4,7 @@
   >
     <div class="felx-row flex items-center">
       <h1 class="text-xl font-medium text-light-400">{{ component.name }}</h1>
-      <span class="m-4 rounded bg-indigo-100 px-2 py-1 text-xs font-medium text-indigo-800">
+      <span class="text-xs m-4 rounded bg-indigo-100 px-2 py-1 font-medium text-indigo-800">
         {{ component.category }}
       </span>
     </div>

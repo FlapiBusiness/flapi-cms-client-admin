@@ -14,7 +14,8 @@
         }
       }
     ],
-    "category": "buttons"
+    "category": "buttons",
+    "previewImage": "/previews/FlapiGoogleButton.png"
   },
   {
     "name": "FlapiSquareButton",
@@ -76,7 +77,8 @@
         "name": "default"
       }
     ],
-    "category": "buttons"
+    "category": "buttons",
+    "previewImage": "/previews/FlapiSquareButton.png"
   },
   {
     "name": "FlapiTableCard",
@@ -136,7 +138,8 @@
         ]
       }
     ],
-    "category": "cards"
+    "category": "cards",
+    "previewImage": "/previews/FlapiTableCard.png"
   },
   {
     "name": "FlapiButton",
@@ -218,7 +221,8 @@
         "name": "default"
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiButton.png"
   },
   {
     "name": "FlapiInput",
@@ -320,7 +324,8 @@
         "name": "update:value"
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiInput.png"
   },
   {
     "name": "FlapiLabel",
@@ -339,7 +344,8 @@
         "name": "default"
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiLabel.png"
   },
   {
     "name": "FlapiLink",
@@ -368,7 +374,8 @@
         "name": "default"
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiLink.png"
   },
   {
     "name": "FlapiSelect",
@@ -427,7 +434,8 @@
         "name": "update:modelValue"
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiSelect.png"
   },
   {
     "name": "FlapiTable",
@@ -557,7 +565,8 @@
         ]
       }
     ],
-    "category": "core"
+    "category": "core",
+    "previewImage": "/previews/FlapiTable.png"
   },
   {
     "name": "FlapiDivider",
@@ -574,7 +583,8 @@
         }
       }
     ],
-    "category": "decorators"
+    "category": "decorators",
+    "previewImage": "/previews/FlapiDivider.png"
   },
   {
     "name": "FlapiAlert",
@@ -623,7 +633,8 @@
         "name": "hide"
       }
     ],
-    "category": "feedback"
+    "category": "feedback",
+    "previewImage": "/previews/FlapiAlert.png"
   },
   {
     "name": "FlapiLogo",
@@ -650,7 +661,8 @@
         }
       }
     ],
-    "category": "flapi"
+    "category": "flapi",
+    "previewImage": "/previews/FlapiLogo.png"
   },
   {
     "name": "FlapiSidebar",
@@ -709,7 +721,8 @@
         "name": "update:activePath"
       }
     ],
-    "category": "flapi\\FlapiSidebar"
+    "category": "flapi\\FlapiSidebar",
+    "previewImage": "/previews/FlapiSidebar.png"
   },
   {
     "name": "FlapiSidebarLink",
@@ -776,7 +789,8 @@
         }
       }
     ],
-    "category": "flapi\\FlapiSidebar"
+    "category": "flapi\\FlapiSidebar",
+    "previewImage": "/previews/FlapiSidebarLink.png"
   },
   {
     "name": "FlapiSidebarToggleButton",
@@ -827,7 +841,8 @@
         "name": "confirm"
       }
     ],
-    "category": "inputs"
+    "category": "inputs",
+    "previewImage": "/previews/FlapiPinCode.png"
   },
   {
     "name": "FlapiSearchBar",
@@ -869,7 +884,8 @@
         "name": "update:value"
       }
     ],
-    "category": "inputs"
+    "category": "inputs",
+    "previewImage": "/previews/FlapiSearchBar.png"
   },
   {
     "name": "FlapiPagination",
@@ -920,7 +936,8 @@
         "name": "next"
       }
     ],
-    "category": "navigations"
+    "category": "navigations",
+    "previewImage": "/previews/FlapiPagination.png"
   },
   {
     "name": "FlapiAvatar",
@@ -967,7 +984,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiAvatar.png"
   },
   {
     "name": "FlapiBadge",
@@ -1024,7 +1042,8 @@
         "name": "default"
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiBadge.png"
   },
   {
     "name": "FlapiCircularProgress",
@@ -1081,7 +1100,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiCircularProgress.png"
   },
   {
     "name": "FlapiIcon",
@@ -1145,7 +1165,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiIcon.png"
   },
   {
     "name": "FlapiProgressBar",
@@ -1212,7 +1233,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiProgressBar.png"
   },
   {
     "name": "FlapiPulsatingCircle",
@@ -1236,7 +1258,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiPulsatingCircle.png"
   },
   {
     "name": "FlapiSpinner",
@@ -1253,7 +1276,8 @@
         }
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiSpinner.png"
   },
   {
     "name": "FlapiTooltip",
@@ -1292,6 +1316,7 @@
         "name": "default"
       }
     ],
-    "category": "ui"
+    "category": "ui",
+    "previewImage": "/previews/FlapiTooltip.png"
   }
 ]

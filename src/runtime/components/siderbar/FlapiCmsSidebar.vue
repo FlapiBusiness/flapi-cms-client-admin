@@ -26,6 +26,7 @@
             :category="component.category"
             :slots="component.slots"
             :events="component.events"
+            :imageUrl="component.previewImage"
             @select="emit('select', component)"
           />
         </div>

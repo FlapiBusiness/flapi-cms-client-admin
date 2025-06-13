@@ -10,6 +10,7 @@ import type { CmsComponentSkeleton } from '#cmsadmin/core/types/CmsComponentSkel
  * @property {string} category - The category to which the component belongs.
  * @property {FlapiSlot[]} [slots] - An optional array of slots that the component can use.
  * @property {FlapiEvent[]} [events] - An optional array of events that the component can emit.
+ * @property {string} [previewImage] - An optional URL or path to a preview image for the component.
  */
 export type FlapiCmsComponent = {
   name: string
@@ -18,6 +19,7 @@ export type FlapiCmsComponent = {
   category: string
   slots?: FlapiSlot[]
   events?: FlapiEvent[]
+  previewImage?: string
 }
 
 /**
