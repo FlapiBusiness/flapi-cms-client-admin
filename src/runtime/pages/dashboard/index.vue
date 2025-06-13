@@ -1,6 +1,6 @@
 <template>
   <div
-    v-for="(component, index) in cmsComponents"
+    v-for="(c, index) in cmsComponents"
     :key="index"
     draggable="true"
     @dragstart="onDragStart(index)"
@@ -17,17 +17,13 @@
     ]"
   >
     <!-- @mouseleave="closeContextMenu" -->
-    <component :is="getComponentName(component.name)" v-bind="component.data.props"> </component>
-    <!-- <FlapiComponentRenderer
-      v-for="(childComponent, childIndex) in slot.components"
-      :key="childComponent.name + '-' + childIndex"
-      :component="childComponent"
-    /> -->
+    <component :is="getComponentName(c.name)" v-bind="c.data.props">
+      <div v-for="slot in c.data.slots" :component="slot">
+        {{ slot.name }} <br />
+        <FlapiComponentRenderer :childComponents="slot.components ?? []" />
+      </div>
+    </component>
   </div>
-  <!-- <div>
-    <FlapiComponentRenderer v-for="component in components" :key="component.order" :component="component" />
-  </div> -->
-
   <div
     v-if="contextMenu.index !== null"
     :style="{ position: 'fixed', top: contextMenu.y + 'px', left: contextMenu.x + 'px', zIndex: 1000 }"
@@ -46,18 +42,27 @@
       Modifier
     </button>
   </div>
+
+  <FlapiBadge backgroundColor="#FFF666" :close="false" size="md" textColor="#2711BB">
+    test
+    <FlapiBadge backgroundColor="#FFFF00" :close="false" size="md" textColor="#2711BB">
+      test
+      <FlapiBadge backgroundColor="#FF0000" :close="false" size="md" textColor="#2711BB">
+        test
+        <FlapiBadge backgroundColor="#000000" :close="false" size="md" textColor="#2711BB"> test </FlapiBadge>
+      </FlapiBadge>
+    </FlapiBadge>
+  </FlapiBadge>
 </template>
 
 <script lang="ts" setup>
 import { useCmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
 import type { CmsComponentStore } from '#cmsadmin/stores/cmsComponentStore'
 import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
-// import FlapiComponentRenderer from '~/components/display/FlapiComponentRenderer.vue'
+import FlapiComponentRenderer from '#cmsadmin/components/display/FlapiComponentRenderer.vue'
 
 import type { Ref } from 'vue'
 import { ref, onMounted } from 'vue'
-import { definePageMeta } from '.nuxt/imports'
-// import { definePageMeta } from ''
 
 definePageMeta({
   layout: 'cms',
