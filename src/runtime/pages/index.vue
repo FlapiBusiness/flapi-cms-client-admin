@@ -5,7 +5,12 @@
       :key="index"
       :is="getComponentName(component.name)"
       v-bind="component.data.props"
-    />
+    >
+      <div v-for="slot in component.data.slots" :component="slot">
+        {{ slot.name }} <br />
+        <FlapiComponentRenderer :childComponents="slot.components ?? []" />
+      </div>
+    </component>
   </div>
 </template>
 

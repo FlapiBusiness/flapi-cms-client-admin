@@ -15,7 +15,6 @@
 // import { defineAsyncComponent } from 'vue'
 import { getComponentName } from '#cmsadmin/core/others/componentDisplayMap'
 import type { FlapiCmsComponent } from '#cmsadmin/core'
-import { onMounted } from 'vue'
 
 /**
  * @description
@@ -26,15 +25,10 @@ export type FlapiComponentRendererProps = {
   childComponents: FlapiCmsComponent[]
 }
 
-const props: FlapiComponentRendererProps = defineProps({
+defineProps({
   childComponents: {
     type: Object as () => FlapiCmsComponent[],
     required: true,
   },
-})
-
-onMounted(() => {
-  // This is where you can perform any setup or initialization for the component
-  console.log('FlapiComponentRenderer mounted with component:', JSON.stringify(props.childComponents, null, 2))
 })
 </script>

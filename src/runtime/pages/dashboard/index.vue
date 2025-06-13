@@ -1,29 +1,50 @@
 <template>
-  <div
-    v-for="(c, index) in cmsComponents"
-    :key="index"
-    draggable="true"
-    @dragstart="onDragStart(index)"
-    @dragover.prevent
-    @dragleave="onDragLeave"
-    @drop="onDrop(index)"
-    @dragover="onDragOver(index)"
-    @contextmenu.prevent="onContextMenu($event, index)"
-    @click="closeContextMenu"
-    @mouseenter="hoveredIndex = index"
-    :class="[
-      'group relative my-2 p-1 transition',
-      hoveredIndex === index ? 'border-2 border-blue-500' : 'border border-gray-300',
-    ]"
-  >
+  <div v-for="(c, index) in cmsComponents">
     <!-- @mouseleave="closeContextMenu" -->
-    <component :is="getComponentName(c.name)" v-bind="c.data.props">
+
+    <div
+      @dragover.prevent
+      @dragleave="onDragLeave"
+      @drop="onDrop(index)"
+      @dragover="onDragOver(index)"
+      class="absolute inset-0 z-10"
+      :class="[
+        'group relative my-2 p-1 transition',
+        hoveredIndex === index ? 'rounded border-2 border-blue-500 bg-blue-500' : '',
+      ]"
+    ></div>
+
+    <component
+      draggable="true"
+      @dragover.prevent
+      @dragstart="onDragStart(index)"
+      @contextmenu.prevent="onContextMenu($event, index)"
+      @drop="onSlotDrop(index)"
+      @mouseenter="hoveredIndex = index"
+      @click="closeContextMenu"
+      :class="[
+        'rounded bg-gray-100 p-2 shadow-sm transition',
+        hoveredIndex === index ? 'border-2 border-blue-500' : 'border border-gray-300',
+      ]"
+      :style="{ cursor: 'grab' }"
+      :is="getComponentName(c.name)"
+      v-bind="c.data.props"
+    >
       <div v-for="slot in c.data.slots" :component="slot">
         {{ slot.name }} <br />
         <FlapiComponentRenderer :childComponents="slot.components ?? []" />
       </div>
     </component>
+    <div
+      @dragover.prevent
+      @dragleave="onDragLeave"
+      @drop="onDrop(index)"
+      @dragover="onDragOver(index)"
+      class="absolute inset-0 z-10"
+      :class="['group relative my-2 p-1 transition', hoveredIndex === index ? 'rounded border-2 border-blue-500' : '']"
+    ></div>
   </div>
+
   <div
     v-if="contextMenu.index !== null"
     :style="{ position: 'fixed', top: contextMenu.y + 'px', left: contextMenu.x + 'px', zIndex: 1000 }"
@@ -42,17 +63,6 @@
       Modifier
     </button>
   </div>
-
-  <FlapiBadge backgroundColor="#FFF666" :close="false" size="md" textColor="#2711BB">
-    test
-    <FlapiBadge backgroundColor="#FFFF00" :close="false" size="md" textColor="#2711BB">
-      test
-      <FlapiBadge backgroundColor="#FF0000" :close="false" size="md" textColor="#2711BB">
-        test
-        <FlapiBadge backgroundColor="#000000" :close="false" size="md" textColor="#2711BB"> test </FlapiBadge>
-      </FlapiBadge>
-    </FlapiBadge>
-  </FlapiBadge>
 </template>
 
 <script lang="ts" setup>
@@ -63,6 +73,22 @@ import FlapiComponentRenderer from '#cmsadmin/components/display/FlapiComponentR
 
 import type { Ref } from 'vue'
 import { ref, onMounted } from 'vue'
+import type { FlapiSlot } from '#cmsadmin/core/types/FlapiCmsComponent'
+
+// :key="index"
+// draggable="true"
+// @dragstart="onDragStart(index)"
+// @dragover.prevent
+// @dragleave="onDragLeave"
+// @drop="onDrop(index)"
+// @dragover="onDragOver(index)"
+// @contextmenu.prevent="onContextMenu($event, index)"
+// @click="closeContextMenu"
+// @mouseenter="hoveredIndex = index"
+// :class="[
+//   'group relative my-2 p-1 transition',
+//   hoveredIndex === index ? 'border-2 border-blue-500' : 'border border-gray-300',
+// ]"
 
 definePageMeta({
   layout: 'cms',
@@ -71,6 +97,7 @@ definePageMeta({
 const cmsComponentStore: ReturnType<typeof useCmsComponentStore> = useCmsComponentStore()
 const cmsComponents: Ref<CmsComponentStore[]> = ref(cmsComponentStore.components)
 const hoveredIndex: Ref<number | null> = ref(null)
+// Variable to keep track of the index of the component being dragged
 let draggedIndex: number = -1
 const contextMenu: Ref = ref<{ x: number; y: number; index: number | null }>({ x: 0, y: 0, index: null })
 
@@ -97,6 +124,7 @@ const onDragStart: (index: number) => void = (index: number): void => {
  * @description This function handles the drop event and reorders the components.
  */
 const onDrop: (dropIndex: number) => void = (dropIndex: number): void => {
+  console.log('onDrop', dropIndex, draggedIndex)
   const items: CmsComponentStore[] = [...cmsComponents.value]
   const draggedItem: CmsComponentStore = items.splice(draggedIndex, 1)[0]
   items.splice(dropIndex, 0, draggedItem)
@@ -123,6 +151,33 @@ const onDragOver: (index: number) => void = (index: number): void => {
  */
 const onDragLeave: () => void = (): void => {
   hoveredIndex.value = null
+}
+
+/**
+ * @param {number} index - The index of the slot where the component is dropped.
+ * @returns {void}
+ * @description This function handles the drop event for a slot and adds the component to the first slot of the component.
+ */
+const onSlotDrop: (index: number) => void = (index: number): void => {
+  console.log('onSlotDrop', index)
+
+  // get the component at with the given index
+  const component: CmsComponentStore = cmsComponents.value[index]
+  // if the component has no slots, return
+  if (!component.data.slots || component.data.slots.length === 0) {
+    return
+  }
+  // if the component has slots add the component to the first slot
+  const firstSlot: FlapiSlot = component.data.slots[0]
+  firstSlot.components = firstSlot.components || []
+  // Ensure only the FlapiCmsComponent data is pushed, not the store wrapper
+  firstSlot.components.push(cmsComponents.value[draggedIndex].data)
+  // remove the component from the cmsComponents array
+  cmsComponents.value.splice(draggedIndex, 1)
+  // update the order of the components
+  cmsComponents.value.forEach((item: CmsComponentStore, i: number) => (item.order = i + 1))
+  // set the updated components in the store
+  cmsComponentStore.setCmsComponentStores(cmsComponents.value)
 }
 
 /**
@@ -172,71 +227,4 @@ const closeContextMenu: () => void = (): void => {
   contextMenu.value.x = 0
   contextMenu.value.y = 0
 }
-
-// TODO: Remove this when the components are recursively
-// const components: Ref<CmsComponentStore[]> = ref([
-//   {
-//     name: 'FlapiBadge',
-//     order: 1,
-//     data: {
-//       name: 'FlapiBadge',
-//       description: 'A badge component',
-//       category: 'UI',
-//       props: {
-//         backgroundColor: '#D6D0FB',
-//         textColor: '#fff',
-//         size: 'md',
-//       },
-//       slots: [{ name: 'default' }],
-//     },
-//     components: [
-//       {
-//         name: 'FlapiBadge',
-//         order: 2,
-//         data: {
-//           name: 'FlapiBadge',
-//           description: 'A badge component',
-//           category: 'UI',
-//           props: {
-//             backgroundColor: '#f00',
-//             textColor: '#fff',
-//           },
-//           slots: [{ name: 'default' }],
-//         },
-//         components: [
-//           {
-//             name: 'FlapiBadge',
-//             order: 3,
-//             data: {
-//               name: 'FlapiBadge',
-//               description: 'A badge component',
-//               category: 'UI',
-//               props: {
-//                 backgroundColor: '#0f0',
-//                 textColor: '#000',
-//               },
-//               slots: [{ name: 'default' }],
-//             },
-//             components: [
-//               {
-//                 name: 'FlapiBadge',
-//                 order: 4,
-//                 data: {
-//                   name: 'FlapiBadge',
-//                   description: 'A badge component',
-//                   category: 'UI',
-//                   props: {
-//                     backgroundColor: '#00f',
-//                     textColor: '#fff',
-//                   },
-//                   slots: [{ name: 'default' }],
-//                 },
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ])
 </script>

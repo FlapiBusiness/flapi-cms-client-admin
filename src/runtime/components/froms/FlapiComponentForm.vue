@@ -66,7 +66,7 @@
             v-else-if="prop.type.elements?.length"
             v-model:value="formValues.props[prop.name]"
             :label="prop.name"
-            :options="prop.type.elements.map((el) => ({ value: el.name, label: el.name }))"
+            :options="prop.type.elements.map((el: string) => ({ value: el, label: el }))"
           />
 
           <div

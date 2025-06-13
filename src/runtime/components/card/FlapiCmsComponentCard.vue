@@ -56,7 +56,7 @@ import type { PropType } from 'vue'
  * This is the model value for the Flapi CMS component card.
  * @property {string} name - The name of the component.
  * @property {string} description - The description of the component.
- * @property {FlapiProp[]} [props] - The props of the component.
+ * @property {Record<string, any>} [props] - The props of the component.
  * @property {string} category - The category of the component.
  * @property {FlapiSlot[]} [slots] - The slots of the component.
  * @property {FlapiEvent[]} [events] - The events of the component.
@@ -64,7 +64,7 @@ import type { PropType } from 'vue'
 export type FlapiCmsComponentCardProps = {
   name: string
   description: string
-  props?: FlapiProp[]
+  props?: Record<string, any>
   category: string
   slots?: FlapiSlot[]
   events?: FlapiEvent[]
@@ -81,12 +81,12 @@ const props: FlapiCmsComponentCardProps = defineProps({
     required: true,
   },
   props: {
-    type: Array as PropType<FlapiProp[]>,
+    type: Array as PropType<Record<string, any>>,
     /**
      * The default value for the props property.
-     * @returns {FlapiProp[]} Prop[]
+     * @returns {Record<string, any>} Prop[]
      */
-    default: (): FlapiProp[] => [],
+    default: (): Record<string, any> => [],
   },
   category: {
     type: String,

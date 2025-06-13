@@ -105,6 +105,11 @@ const submit: () => void = (): void => {
     description: 'Hero section component',
     category: 'Flapi Components',
     props: values.value,
+    slots: [
+      {
+        name: 'default',
+      },
+    ],
   }
 
   if (formIsValid.value) {
