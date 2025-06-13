@@ -6,7 +6,7 @@
     >
       <span class="ml-4 text-base font-semibold text-light-400">{{ title }}</span>
       <FlapiIcon
-        :name="isOpen ? 'ChevronRight' : 'Minus'"
+        :name="isOpen ? 'Minus' : 'ChevronRight'"
         color="#fff"
         class="transition-transform duration-200"
         :width="24"
