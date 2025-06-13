@@ -66,7 +66,7 @@
             v-else-if="prop.type.elements?.length"
             v-model:value="formValues.props[prop.name]"
             :label="prop.name"
-            :options="prop.type.elements.map((el: string) => ({ value: el, label: el }))"
+            :options="prop.type.elements.map((el: Element) => ({ value: el.name, label: el.name }))"
           />
 
           <div
@@ -108,6 +108,15 @@ import type { Ref } from 'vue'
 import type { FlapiProp, DefaultValue, FlapiCmsComponent } from '#cmsadmin/core/types/FlapiCmsComponent'
 import FlapiCheckbox from '../inputs/FlapiCheckbox.vue'
 import ListeIcons from '#cmsadmin/assets/icons/liste.json'
+
+/**
+ * @description
+ * This is the model value for the Flapi CMS component.
+ * @property {string} name - The name of the component.
+ */
+export type Element = {
+  name: string
+}
 
 const iconsList: string[] = ListeIcons as string[]
 
@@ -178,20 +187,10 @@ const emit: (event: 'submit', values: Record<string, any>) => void = defineEmits
  * It validates the form values and emits the 'submit' event with the values.
  */
 const submit: () => void = () => {
-  // for (const key in formValues.value) {
-  //   if (formValues.value[key] === undefined || formValues.value[key] === null) {
-  //     formValues.value[key] = ''
-  //   }
-  // }
-
-  console.log('Form submitted with values:', JSON.stringify(formValues.value, null, 2))
-
   emit('submit', formValues.value)
 }
 
 onMounted(() => {
-  console.log('Mounted FlapiComponentForm with component:', props.component.slots)
-
   formValues.value.props = props.component.props?.reduce((acc: Record<string, any>, prop: FlapiProp) => {
     if (prop.type.name === '(typeof iconsList)[number]') {
       acc[prop.name] = prop.defaultValue ? getDefaultValue(prop.defaultValue) : 'Account'

@@ -1,16 +1,17 @@
 <template>
-  <div v-for="(c, index) in cmsComponents">
+  <div v-for="(c, index) in cmsComponents" @dragover="onDragOver(index)">
     <!-- @mouseleave="closeContextMenu" -->
 
     <div
       @dragover.prevent
-      @dragleave="onDragLeave"
+      @onDragLeave="onDragLeave"
       @drop="onDrop(index)"
-      @dragover="onDragOver(index)"
       class="absolute inset-0 z-10"
       :class="[
-        'group relative my-2 p-1 transition',
-        hoveredIndex === index ? 'rounded border-2 border-blue-500 bg-blue-500' : '',
+        'group relative p-1 transition',
+        hoveredIndex === index && hoveredIndex !== draggedIndex && draggedIndex !== null
+          ? 'my-2 rounded border-2 border-blue-500 bg-blue-500'
+          : '',
       ]"
     ></div>
 
@@ -18,6 +19,7 @@
       draggable="true"
       @dragover.prevent
       @dragstart="onDragStart(index)"
+      @onDragLeave="onDragLeave"
       @contextmenu.prevent="onContextMenu($event, index)"
       @drop="onSlotDrop(index)"
       @mouseenter="hoveredIndex = index"
@@ -31,17 +33,23 @@
       v-bind="c.data.props"
     >
       <div v-for="slot in c.data.slots" :component="slot">
-        {{ slot.name }} <br />
-        <FlapiComponentRenderer :childComponents="slot.components ?? []" />
+        <div v-if="!slot.components" class="m-1 rounded border border-gray-300 p-2 text-center text-gray-500">
+          Composent déposable ici
+        </div>
+        <FlapiComponentRenderer :childComponents="slot.components ?? []" :edition="true" />
       </div>
     </component>
     <div
       @dragover.prevent
-      @dragleave="onDragLeave"
+      @onDragLeave="onDragLeave"
       @drop="onDrop(index)"
-      @dragover="onDragOver(index)"
       class="absolute inset-0 z-10"
-      :class="['group relative my-2 p-1 transition', hoveredIndex === index ? 'rounded border-2 border-blue-500' : '']"
+      :class="[
+        'group relative p-1 transition',
+        hoveredIndex === index && hoveredIndex !== draggedIndex && draggedIndex !== null
+          ? 'my-2 rounded border-2 border-blue-500 bg-blue-500'
+          : '',
+      ]"
     ></div>
   </div>
 
@@ -75,30 +83,16 @@ import type { Ref } from 'vue'
 import { ref, onMounted } from 'vue'
 import type { FlapiSlot } from '#cmsadmin/core/types/FlapiCmsComponent'
 
-// :key="index"
-// draggable="true"
-// @dragstart="onDragStart(index)"
-// @dragover.prevent
-// @dragleave="onDragLeave"
-// @drop="onDrop(index)"
-// @dragover="onDragOver(index)"
-// @contextmenu.prevent="onContextMenu($event, index)"
-// @click="closeContextMenu"
-// @mouseenter="hoveredIndex = index"
-// :class="[
-//   'group relative my-2 p-1 transition',
-//   hoveredIndex === index ? 'border-2 border-blue-500' : 'border border-gray-300',
-// ]"
-
 definePageMeta({
   layout: 'cms',
 })
 
 const cmsComponentStore: ReturnType<typeof useCmsComponentStore> = useCmsComponentStore()
 const cmsComponents: Ref<CmsComponentStore[]> = ref(cmsComponentStore.components)
+
 const hoveredIndex: Ref<number | null> = ref(null)
-// Variable to keep track of the index of the component being dragged
-let draggedIndex: number = -1
+const draggedIndex: Ref<number | null> = ref(null)
+
 const contextMenu: Ref = ref<{ x: number; y: number; index: number | null }>({ x: 0, y: 0, index: null })
 
 onMounted(() => {
@@ -115,7 +109,7 @@ onMounted(() => {
  * @description This function sets the components in the store and local storage.
  */
 const onDragStart: (index: number) => void = (index: number): void => {
-  draggedIndex = index
+  draggedIndex.value = index
 }
 
 /**
@@ -125,8 +119,9 @@ const onDragStart: (index: number) => void = (index: number): void => {
  */
 const onDrop: (dropIndex: number) => void = (dropIndex: number): void => {
   console.log('onDrop', dropIndex, draggedIndex)
+  if (draggedIndex.value === null) return
   const items: CmsComponentStore[] = [...cmsComponents.value]
-  const draggedItem: CmsComponentStore = items.splice(draggedIndex, 1)[0]
+  const draggedItem: CmsComponentStore = items.splice(draggedIndex.value, 1)[0]
   items.splice(dropIndex, 0, draggedItem)
 
   // Réaffecte les ordres
@@ -135,6 +130,7 @@ const onDrop: (dropIndex: number) => void = (dropIndex: number): void => {
   cmsComponentStore.setCmsComponentStores(items)
 
   hoveredIndex.value = null
+  draggedIndex.value = null
 }
 
 /**
@@ -161,22 +157,20 @@ const onDragLeave: () => void = (): void => {
 const onSlotDrop: (index: number) => void = (index: number): void => {
   console.log('onSlotDrop', index)
 
-  // get the component at with the given index
+  if (draggedIndex.value === index) {
+    return
+  }
+
   const component: CmsComponentStore = cmsComponents.value[index]
-  // if the component has no slots, return
   if (!component.data.slots || component.data.slots.length === 0) {
     return
   }
-  // if the component has slots add the component to the first slot
+  if (draggedIndex.value === null) return
   const firstSlot: FlapiSlot = component.data.slots[0]
   firstSlot.components = firstSlot.components || []
-  // Ensure only the FlapiCmsComponent data is pushed, not the store wrapper
-  firstSlot.components.push(cmsComponents.value[draggedIndex].data)
-  // remove the component from the cmsComponents array
-  cmsComponents.value.splice(draggedIndex, 1)
-  // update the order of the components
+  firstSlot.components.push(cmsComponents.value[draggedIndex.value].data)
+  cmsComponents.value.splice(draggedIndex.value, 1)
   cmsComponents.value.forEach((item: CmsComponentStore, i: number) => (item.order = i + 1))
-  // set the updated components in the store
   cmsComponentStore.setCmsComponentStores(cmsComponents.value)
 }
 

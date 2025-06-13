@@ -3,8 +3,11 @@
     <component :is="getComponentName(childComponent.name)" v-bind="childComponent.props">
       <div v-if="childComponent.slots && childComponent.slots.length > 0">
         <div v-for="slot in childComponent.slots">
-          {{ slot.name }} <br />
-          <FlapiComponentRenderer :childComponents="slot?.components ?? []"> </FlapiComponentRenderer>
+          <div v-if="!slot.components && edition" class="m-1 rounded border border-gray-300 p-2 text-gray-500">
+            Composent déposable ici
+          </div>
+          <FlapiComponentRenderer :childComponents="slot?.components ?? []" :edition="edition">
+          </FlapiComponentRenderer>
         </div>
       </div>
     </component>
@@ -23,12 +26,17 @@ import type { FlapiCmsComponent } from '#cmsadmin/core'
  */
 export type FlapiComponentRendererProps = {
   childComponents: FlapiCmsComponent[]
+  edition?: boolean
 }
 
 defineProps({
   childComponents: {
     type: Object as () => FlapiCmsComponent[],
     required: true,
+  },
+  edition: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>
